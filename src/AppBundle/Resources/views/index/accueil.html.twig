@@ -1,0 +1,46 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+<form method="POST" action="www.google.fr">
+<input type="submit" name="addUser" value="Acheter billets en ligne" style="margin-top: 10px;" class="flatButton">
+</form>
+    <h2>
+      Les horaires d'ouverture
+    </h2>
+<table>
+{{ var1 }}
+    <tr>
+      <td>Jour</td>
+      <td>Horaires</td>
+    </tr>
+    <tr> 
+      <td>Lundi</td>
+      <td>9 h - 18 h</td>
+    </tr>
+    <tr> 
+      <td>Mardi</td>
+      <td>Fermé</td>
+    </tr>
+    <tr> 
+      <td>Mercredi</td>
+      <td>9 h - 21h45</td>
+    </tr>
+    <tr> 
+      <td>Jeudi</td>
+      <td>9 h - 18 h</td>
+    </tr>
+    <tr> 
+      <td>Vendredi</td>
+      <td>9 h - 21h45</td>
+    </tr>
+    <tr> 
+      <td>Samedi</td>
+      <td>9 h - 18 h</td>
+    </tr>
+    <tr> 
+      <td>Dimanche</td>
+      <td>9 h - 18 h</td>
+    </tr>
+</table>
+{% endblock %}

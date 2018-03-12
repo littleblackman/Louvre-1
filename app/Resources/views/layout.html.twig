@@ -1,0 +1,29 @@
+{# empty Twig template #}
+<head>
+
+{#{% javascripts '@AppBundle/Resources/AsseticBundle*' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% block stylesheets %}
+  <script src="{{ asset('js/script.js') }}"></script>
+{% endblock %}
+#}
+    {% block head %}
+
+        <div class="container">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <h1 class="navbar-brand col-md-12" href="accueil.html.twig">Billeterie du Louvre</h1>
+                            <img src='Louvre-logo.jpg' /><img src="{{ asset('Louvre-logo.jpg') }}" />
+                    </div>         
+                </nav>
+        </div>
+    {% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+<footer>
+    {% block footer %}<p class="col-md-12">Copyright &copy;2018 - <small>Alison MELE</small></p>{% endblock %}
+</footer>
