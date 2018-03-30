@@ -21,5 +21,13 @@ class indexController extends Controller {
 
         ));
     }
+    /**
+     * @Route("/save")
+     */
+    public function dateAction() {
+         
+        return $this->render('AppBundle:index:savedate.html.twig');
+    }
+    
 
 }

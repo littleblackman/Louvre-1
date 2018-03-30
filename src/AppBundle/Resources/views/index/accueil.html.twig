@@ -1,15 +1,17 @@
 {% extends 'layout.html.twig' %}
-
 {% block content %}
-
-<form method="POST" action="www.google.fr">
+    
+<form method="POST" action="">
 <input type="submit" name="addUser" value="Acheter billets en ligne" style="margin-top: 10px;" class="flatButton">
 </form>
     <h2>
       Les horaires d'ouverture
     </h2>
+    {% for var in var1 %}
+        <li>{{ var|e }}</li>
+    {% endfor %}
+    
 <table>
-{{ var1 }}
     <tr>
       <td>Jour</td>
       <td>Horaires</td>
