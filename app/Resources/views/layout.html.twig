@@ -1,0 +1,38 @@
+{# empty Twig template #}
+<!doctype html>
+<html>
+<head>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+    {% endblock %}
+    <meta charset="utf-8" />
+    <title>Billeterie du Louvre</title> 
+    <link rel="stylesheet" type="text/css" href="../../app/Resources/style.css" />
+
+ 
+</head>
+
+<body>
+    {% block head %}
+        <div class="container col-md-12">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <h1 class="navbar-brand" href="accueil.html.twig">Billeterie du Louvre</h1>
+                        <img src='../../src/AppBundle/Resources/Louvre-logo.jpg' />
+                        
+                    </div>         
+                </nav>
+        </div>
+    {% endblock %}
+    {% block content %}{% endblock %}
+    <footer>
+    {% block footer %}
+        <p class="col-md-12">Copyright &copy;2018 - <small>Alison MELE</small></p>
+        <a href="" class="col-md-12">Mentions légales</a>
+    {% endblock %}
+    </footer>
+</body>
+
+</html>
