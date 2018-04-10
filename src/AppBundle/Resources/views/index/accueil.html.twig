@@ -1,21 +1,16 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-<form method="POST" action="">
-<input type="submit" name="addUser" value="Acheter billets en ligne" style="margin-top: 10px;" class="flatButton">
-</form>
+
+<div class="row">
+    <div class="row">
+    <div class='col-md-2'>
+        <span class="border border-dark">
     <h2>
-      Les horaires d'ouverture
+      Informations pratiques
     </h2>
-    {% for var in var1 %}
-        <li>{{ var|e }}</li>
-    {% endfor %}
-    
-<table>
-    <tr>
-      <td>Jour</td>
-      <td>Horaires</td>
-    </tr>
+    <table>
     <tr> 
       <td>Lundi</td>
       <td>9 h - 18 h</td>
@@ -44,5 +39,24 @@
       <td>Dimanche</td>
       <td>9 h - 18 h</td>
     </tr>
-</table>
+    <p>Musée fermé les 1er mai, 1er novembre et 25 décembre</p>
+    </table>
+        <h2>Conditions d'achat</h2>
+            <p>8 billets par commande</p>
+            <p>Entrée à partir de 14h pour le billets Demi-journée</p>
+                <h2>Informations tarifaires</h2>
+                   <p> Normal (à partir de 12 ans): 16 €</p>
+                   <p>Enfant (à partir de 4 ans et jusqu’à 12 ans): à 8 €</p>
+                   <p>Enfant -4ans : Gratuit</p>
+                   <p>Senior (à partir de 60 ans): 12  €</p>
+                   <p>Réduit  de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…)<p>
+        </span>
+    </div>
+    <div class="col-md-6">
+        <h1>Achetez vos billets</h1>
+            {{ form(form) }}
+    </div>
+    </div>
+</div>
+
 {% endblock %}

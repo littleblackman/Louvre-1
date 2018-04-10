@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Tickets
@@ -26,7 +27,7 @@ class Tickets
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Sales")
-     * 
+     * @Assert\NotBlank
      */
     private $sales;
     /**

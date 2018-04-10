@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Sales
@@ -14,10 +16,13 @@ class Sales
 {
     /**
      * @var int
-     *
+     
+     * 
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(targetEntity="Tickets", mappedBy="id")
+     * @Assert\Valid()
      */
     private $id;
 
@@ -82,7 +87,6 @@ class Sales
      * @ORM\Column(name="state_paiement", type="boolean")
      */
     private $statePaiement;
-
 
     /**
      * Get id
@@ -284,5 +288,29 @@ class Sales
     public function getStatePaiement()
     {
         return $this->statePaiement;
+    }
+
+    /**
+     * Set datebirth
+     *
+     * @param \DateTime $datebirth
+     *
+     * @return Sales
+     */
+    public function setDatebirth($datebirth)
+    {
+        $this->datebirth = $datebirth;
+
+        return $this;
+    }
+
+    /**
+     * Get datebirth
+     *
+     * @return \DateTime
+     */
+    public function getDatebirth()
+    {
+        return $this->datebirth;
     }
 }

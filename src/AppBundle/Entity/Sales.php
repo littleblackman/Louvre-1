@@ -3,23 +3,26 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Sales
  *
  * @ORM\Table(name="sales")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SalesRepository")
+ * 
  */
 class Sales
 {
     /**
      * @var int
-     
      * 
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\OneToMany(targetEntity="Tickets", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="Tickets", mappedBy="id", cascade={"persist"})
+     * 
      */
     private $id;
 
@@ -84,7 +87,6 @@ class Sales
      * @ORM\Column(name="state_paiement", type="boolean")
      */
     private $statePaiement;
-
 
     /**
      * Get id
