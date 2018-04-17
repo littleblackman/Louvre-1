@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Sales
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="sales")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SalesRepository")
  */
-class Sales
+class Sale
 {
     /**
      * @var int
@@ -85,7 +87,20 @@ class Sales
      */
     private $statePaiement;
 
+     /**
+     *
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="sale")
+     * @ORM\OrderBy({"id" = "ASC"})
+     */
+    private $tickets;
+    
 
+    public function __construct()
+    {
+        $tickets = new ArrayCollection();
+    }
+    
+    
     /**
      * Get id
      *
@@ -311,4 +326,30 @@ class Sales
     {
         return $this->datebirth;
     }
+    
+    
+    
+    /**
+     * add a ticket
+     *
+     * @param Ticket $ticket
+     * @return $this
+     */
+    public function addTicket(Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+        $ticket->setSale($this);
+        return $this;
+    }
+
+    /**
+     * get tickets
+     * @return ArrayCollection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+    
+    
 }
