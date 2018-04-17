@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TicketsRepository")
  
  */
-class Tickets
+class Ticket
 {
     /**
      * @var int
@@ -25,9 +25,10 @@ class Tickets
      /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Sales")
+     * @ORM\ManyToOne(targetEntity="Sales", inversedBy="tickets")
+     * @ORM\JoinColumn(name="sale_id", referencedColumnName="id")
      */
-    private $sales;
+    private $sale;
     /**
      * @var string
      *
@@ -161,6 +162,22 @@ class Tickets
     public function getPrice()
     {
         return $this->price;
+    }
+ 
+    /**
+    *
+    */
+    public function setSale(Sale $sale)
+    {
+      $this->sale = $sale;
+    }
+ 
+    /**
+    *
+    */
+    public function getSale()
+    {
+      return $this->sale;
     }
 }
 
