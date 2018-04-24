@@ -1,12 +1,8 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
-
-
 <div class="row">
-    <div class="row">
     <div class='col-md-2'>
-        <span class="border border-dark">
     <h2>
       Informations pratiques
     </h2>
@@ -50,13 +46,16 @@
                    <p>Enfant -4ans : Gratuit</p>
                    <p>Senior (à partir de 60 ans): 12  €</p>
                    <p>Réduit  de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…)<p>
-        </span>
     </div>
+
+
     <div class="col-md-6">
-        <h1>Achetez vos billets</h1>
-            {{ form(form) }}
-    </div>
+      <div class="form">
+        <h1>Réservez votre entrée</h1>
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}                   
+      </div>
     </div>
 </div>
-
 {% endblock %}
