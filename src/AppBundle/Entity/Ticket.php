@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Ticket
  *
@@ -30,6 +30,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -37,12 +38,13 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="surname", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $surname;
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="birth", type="date")
+     * @Assert\Date()
      */
     private $birth;
 
@@ -50,10 +52,18 @@ class Ticket
      * @var array
      *
      * @ORM\Column(name="country", type="simple_array")
+     * @Assert\Country()
      */
     private $country;
-
+    /*
+     * @var int
+     * 
+     * @ORM\Column(name="price", type="integer")
+     */
+    private $price;
     
+    
+
     /**
     * Set Sale
     */
@@ -176,5 +186,30 @@ class Ticket
     {
         return $this->country;
     }
+    /**
+     * Get price
+     *
+     * @return int
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    
+    }
+     /**
+     * Set price
+     *
+     * @param integer $price
+     *
+     * @return Ticket
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+    
+    
 }
 

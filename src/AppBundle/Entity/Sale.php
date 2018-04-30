@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Sale
@@ -25,6 +26,7 @@ class Sale
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -32,6 +34,7 @@ class Sale
      * @var string
      *
      * @ORM\Column(name="surname", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $surname;
 
@@ -39,18 +42,18 @@ class Sale
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     * 
      */
     private $email;
     
+   
     /**
-     *
-     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="sale")
-     * @ORM\OrderBy({"id" = "ASC"})
-     */     
-    /**
-     * @var \DateTime
+     * @var \Date
      *
      * @ORM\Column(name="datereservation", type="date")
+     *
      */
     private $datereservation;
     
@@ -65,6 +68,7 @@ class Sale
      * @var \DateTime
      *
      * @ORM\Column(name="visit", type="date")
+     * 
      */
     private $visit;
 
@@ -72,6 +76,7 @@ class Sale
      * @var bool
      *
      * @ORM\Column(name="typeticket", type="boolean")
+     * @Assert\NotBlank()
      */
     private $typeticket;
 
@@ -79,20 +84,26 @@ class Sale
      * @var int
      *
      * @ORM\Column(name="quantity", type="integer")
+     * @Assert\Range(
+     *     min=1,
+     *     max=8,
+     * )
      */
     private $quantity;
     
-   
+     public function __toString() {
+       return Sale::class ;
+    }
 
       public function __construct()
     {
         $tickets = new ArrayCollection();
-        $datereservation = new \Datetime('now');
+        $datereservation = new \Datetime();
     }
 
     
-      /**
-      * add a ticket
+     /**
+     * add a ticket
      *
      * @param Ticket $ticket
      * @return $this
@@ -120,6 +131,74 @@ class Sale
     public function getId()
     {
         return $this->id;
+    }
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     *
+     * @return Sale
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
      /**
      * Set datereservation

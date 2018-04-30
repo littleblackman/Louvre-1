@@ -28,7 +28,7 @@ class OrderController extends Controller
     {
         return $this->render('AppBundle:order:paiement.html.twig');
     }
-   /**
+    /**
      * @Route("/checkout", name="order_checkout", methods="POST")
      */
     public function checkoutAction(Request $request)

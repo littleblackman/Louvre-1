@@ -26,8 +26,14 @@ class SaleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('datereservation', DateTimeType::class)
-                ->add('visit', DateType::class)
+                ->add('datereservation', DateType::class, array(
+                    'data' => new \DateTime(),
+                    
+                     ))
+                ->add('visit', DateType::class, array(
+                    'widget' => 'choice',
+                    'years'  => range(2018,2020),
+                    ))
                 ->add('typeticket', ChoiceType::class, array(
                     'choices' => array(
                         'Journée' => true,

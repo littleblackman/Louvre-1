@@ -32,9 +32,11 @@ class TicketType extends AbstractType
                 ->add('price')
                 ->add('sale', EntityType::class, array(
                     'class' => \AppBundle\Entity\Sale::class,
+                    
                 ))
-                ->add('Payer',SubmitType::class);
-    }/**
+                ->add('submit', SubmitType::class);
+    }
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
