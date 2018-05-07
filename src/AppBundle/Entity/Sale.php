@@ -59,7 +59,7 @@ class Sale
     
     /**
      *
-     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="sale")
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="sale", cascade={"persist","remove"})
      * @ORM\OrderBy({"id" = "ASC"})
      */     
     private $tickets;
