@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraint as AcmeAssert;
 
 /**
  * Sale
@@ -27,6 +28,12 @@ class Sale
      *
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $name;
 
@@ -35,6 +42,12 @@ class Sale
      *
      * @ORM\Column(name="surname", type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $surname;
 
@@ -45,6 +58,7 @@ class Sale
      * @Assert\NotBlank()
      * @Assert\Email()
      * 
+     * 
      */
     private $email;
     
@@ -53,13 +67,13 @@ class Sale
      * @var \Date
      *
      * @ORM\Column(name="datereservation", type="date")
-     *
+     * @Assert\NotBlank()
      */
     private $datereservation;
     
     /**
      *
-     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="sale")
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="sale", cascade={"persist", "remove"})
      * @ORM\OrderBy({"id" = "ASC"})
      */     
     private $tickets;
@@ -68,6 +82,9 @@ class Sale
      * @var \DateTime
      *
      * @ORM\Column(name="visit", type="date")
+     * @Assert\NotBlank()
+     * @Assert\Date()
+     *
      * 
      */
     private $visit;
@@ -97,8 +114,8 @@ class Sale
 
       public function __construct()
     {
-        $tickets = new ArrayCollection();
-        $datereservation = new \Datetime();
+        $this-> tickets = new ArrayCollection();
+        $this-> datereservation = new \Datetime();
     }
 
     
@@ -117,6 +134,7 @@ class Sale
 
     /**
     * get tickets
+     * 
     * @return ArrayCollection
     */
     public function getTickets()

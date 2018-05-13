@@ -13,10 +13,12 @@ use Symfony\Component\HttpFoundation\Request;
 class indexController extends Controller {
 
     /**
-    * @Route("/index")
+    * 
     */
     public function indexAction() {
              
-        return $this->render('AppBundle:index:accueil.html.twig');
+        return $this->render('AppBundle:index:accueil.html.twig', array(
+            'form'=> $form->createView(),
+        ));
     }
 }

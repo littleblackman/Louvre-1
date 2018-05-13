@@ -27,6 +27,20 @@
                         <h1 class="navbar-brand col-md-6 text-right text-uppercase" href="accueil.html.twig">Billeterie du Louvre</h1>
                     </div>      
                     </div>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-default language dropdown-toggle" data-toggle="dropdown">
+                            {{ app.request.locale }} &nbsp;<span class="caret"></span>
+                          </button>
+                              <ul class="dropdown-menu" role="menu">
+                              
+                                <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"><i class="fa fa-check"></i> English</a></li>
+                              
+                                <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"><i class="fa fa-check"></i>Français</a></li>
+                                
+                                                   
+                              </ul>
+                              
+                        </div>
                 </nav>
     {% endblock %}
     {% block content %}

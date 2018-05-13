@@ -1,9 +1,6 @@
 <?php
-namespace AppBundle\Service;
+namespace App\Validator;
 
-use AppBundle\Entity\Sale;
-use AppBundle\Entity\Ticket;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 /*
@@ -14,15 +11,27 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 
 /**
- * Description of rules
+ * Description of DateValidator
  *
  * @author Alison
  */
-class rules {
-    //put your code here
-    /*
-     * 
-     * 
-     * 
-     */
+class DateValidator extends ConstraintValidator 
+{
+    private $em;
+  
+    public function __construct(EntityManager $em)
+    {
+  	$this->em = $em;
+    }
+    public function validate($value, Constraint $constraint)
+    {
+        $quantity = $this->em->getRepository('AppBundle:Sale')->findByDate($quantity);
+  
+        if ($quantity === 1500)
+        {
+        	$this->context->buildViolation($constraint->message)
+                              ->setParameter('Il n\'y a plys de place disponible', $value)
+                              ->addViolation();
+        }
+    }
 }

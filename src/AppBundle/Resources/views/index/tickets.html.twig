@@ -49,13 +49,67 @@
                    <p>Réduit  de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…)<p>
     </div>
     <div class="col-md-6">
-        <h1>Complétez les coordonnées des visiteurs</h1>
-        <form action="ticket" method="POST">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
+        <h1>ETAPE 2 : Complétez les coordonnées des visiteurs</h1>
+
+         <form action="ticket" method='POST'>
+           {{ form_errors(form) }}
+ 
             
-        </form>
+            <div>
+                 {{ form_label(form.datereservation, "Date de la réservation") }}
+                 {{ form_errors(form.datereservation) }}
+                 {{ form_widget(form.datereservation) }}
+            </div>
+            <div>
+                 {{ form_label(form.visit, "Date de la visite") }}
+                 {{ form_errors(form.visit) }}
+                 {{ form_widget(form.visit) }}
+            </div>
+            <div>
+                 {{ form_label(form.typeticket, "Type de ticket") }}
+                 {{ form_errors(form.typeticket) }}
+                 {{ form_widget(form.typeticket) }}
+            </div>
+            <div>
+                 {{ form_label(form.quantity, "Nombre de billets") }}
+                 {{ form_errors(form.quantity) }}
+                 {{ form_widget(form.quantity) }}
+            </div>
+            <div>
+                 {{ form_label(form.name, "Pénnom") }}
+                 {{ form_errors(form.name) }}
+                 {{ form_widget(form.name) }}
+            </div>
+            <div>
+                 {{ form_label(form.surname, "Nom") }}
+                 {{ form_errors(form.surname) }}
+                 {{ form_widget(form.surname) }}
+            </div>
+            <div>
+                 {{ form_label(form.email, "Votre email") }}
+                 {{ form_errors(form.email) }}
+                 {{ form_widget(form.email) }}
+            </div>
+        <section id="showTicketsForm">
+        <button id="addTicket">Ajouter un ticket</button>
+        
+        <script type="text/javascript">
+            $('#addTicket').click(function(){
+                var url= 'addTicket.php?nb=$quantity';
+                $('#showTicketsForm').load(url);               
+            })
+        </script>
+
+            <div>
+                 {{ form_label(form.tickets, "Compléter les informations visiteurs") }}
+                 {{ form_errors(form.tickets) }}
+                 {{ form_widget(form.tickets) }}
+            </div>
+            <div>
+            <button type="submit" name="Valider coordonnées visiteur"  value="enregistrer"  class="btn btn-primary">Valider coordonnées visiteur</button> 
+            </div>
+         </form>
+</section>
     
 
 </div>

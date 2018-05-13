@@ -14,7 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -25,16 +24,16 @@ class TicketType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
-                ->add('surname')
-                ->add('birth')
+        $builder
+                ->add('name', TextType::class)
+                ->add('surname', TextType::class)
+                ->add('birth', DateType::class, array(
+                    'widget' => 'choice',
+                    'years'  => range(1930,2016),
+                    ))
                 ->add('country')
                 ->add('price')
-                ->add('sale', EntityType::class, array(
-                    'class' => \AppBundle\Entity\Sale::class,
-                    
-                ))
-                ->add('submit', SubmitType::class);
+                ->add('reduction', CheckboxType::class);
     }
     /**
      * {@inheritdoc}
@@ -42,7 +41,7 @@ class TicketType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Ticket'
+            'data_class' => NULL
         ));
     }
 

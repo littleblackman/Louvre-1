@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraints as AcmeAssert;
 /**
  * Ticket
  *
@@ -31,6 +32,12 @@ class Ticket
      *
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $name;
 
@@ -39,6 +46,12 @@ class Ticket
      *
      * @ORM\Column(name="surname", type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $surname;
     /**
@@ -62,6 +75,13 @@ class Ticket
      */
     private $price;
     
+    /*
+     * @var bool
+     * 
+     * @ORM\Column(name="reduction", type="boolean")
+     */
+    private $reduction;
+    
     
 
     /**
@@ -78,6 +98,27 @@ class Ticket
     public function getSale()
     {
       return $this->sale;
+    }
+     /**
+     * Set reduction
+     *
+     * @param boolean $reduction
+     *
+     * @return Ticket
+     */
+    public function setReduction($reduction)
+    {
+      $this->reduction = $reduction;
+    }
+
+    /**
+     * Get reduction
+     *
+     * @return bool
+     */
+    public function getReduction()
+    {
+      return $this->reduction;
     }
 
     /**

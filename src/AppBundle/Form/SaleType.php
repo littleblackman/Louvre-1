@@ -11,12 +11,13 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Form\TicketType;
 
 class SaleType extends AbstractType
 {
@@ -28,11 +29,12 @@ class SaleType extends AbstractType
         $builder
                 ->add('datereservation', DateType::class, array(
                     'data' => new \DateTime(),
-                    
-                     ))
+                   
+                ))
+
                 ->add('visit', DateType::class, array(
                     'widget' => 'choice',
-                    'years'  => range(2018,2020),
+                    'years'  => range(2018, 2019),
                     ))
                 ->add('typeticket', ChoiceType::class, array(
                     'choices' => array(
@@ -44,7 +46,7 @@ class SaleType extends AbstractType
                 ->add('name', TextType::class)
                 ->add('surname', TextType::class)
                 ->add('email', EmailType::class)
-                ->add('Valider', SubmitType::class);
+                ->add('tickets', TicketType::class);                
         
     }/**
      * {@inheritdoc}
@@ -52,7 +54,8 @@ class SaleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Sale'
+            'data_class' => 'AppBundle\Entity\Sale',
+            'csrf_protection' => false,
         ));
     }
 

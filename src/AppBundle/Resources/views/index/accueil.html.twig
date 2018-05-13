@@ -51,10 +51,52 @@
 
     <div class="col-md-6">
       <div class="form">
-        <h1>Réservez votre entrée</h1>
-            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}                   
+        <h1>ETAPE 1 : RESERVEZ VOTRE ENTREE</h1>
+        
+        <form action='index' method='POST'>
+           {{ form_errors(form) }}
+ 
+            
+            <div>
+                 {{ form_label(form.datereservation, "Date de la réservation") }}
+                 {{ form_errors(form.datereservation) }}
+                 {{ form_widget(form.datereservation) }}
+            </div>
+            <div>
+                 {{ form_label(form.visit, "Date de la visite") }}
+                 {{ form_errors(form.visit) }}
+                 {{ form_widget(form.visit) }}
+            </div>
+            <div>
+                 {{ form_label(form.typeticket, "Type de ticket") }}
+                 {{ form_errors(form.typeticket) }}
+                 {{ form_widget(form.typeticket) }}
+            </div>
+            <div>
+                 {{ form_label(form.quantity, "Nombre de billets") }}
+                 {{ form_errors(form.quantity) }}
+                 {{ form_widget(form.quantity) }}
+            </div>
+            <div>
+                 {{ form_label(form.name, "Pénnom") }}
+                 {{ form_errors(form.name) }}
+                 {{ form_widget(form.name) }}
+            </div>
+            <div>
+                 {{ form_label(form.surname, "Nom") }}
+                 {{ form_errors(form.surname) }}
+                 {{ form_widget(form.surname) }}
+            </div>
+            <div>
+                 {{ form_label(form.email, "Votre email") }}
+                 {{ form_errors(form.email) }}
+                 {{ form_widget(form.email) }}
+            </div>
+            <div>
+            <button type="submit" name="Valider coordonnées de l'acheteur"  value="enregistrer"  class="btn btn-primary">Valider coordonnées de l'acheteur</button> 
+            </div>
+        </form>
+        
       </div>
     </div>
 </div>

@@ -14,7 +14,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Sale;
 use AppBundle\Entity\Ticket;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class formController extends Controller {
               
@@ -24,47 +23,48 @@ class formController extends Controller {
     public function addAction(Request $request)
     {
         $sale = new Sale();
-        $ticket = new Ticket();
         $form = $this->createForm(\AppBundle\Form\SaleType::class, $sale);
-        $formticket = $this->createForm(\AppBundle\Form\TicketType::class, $ticket);
-        
+
         $form->handleRequest($request);
-       
+        
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            $em->persist($sale);
-            $em->flush();
-            return $this->render('AppBundle:index:tickets.html.twig', array(
-                'form' => $formticket->createView(),
+//            $form->getData();
+//            $this->getSession()->set('email', $email);
+            
+        return $this->render('AppBundle:index:tickets.html.twig', array(
+                'form' => $form->createView(),
             ));
+
         }
-        else {
-            return $this->render('AppBundle:index:accueil.html.twig', array(
-            'form'=> $form->createView(),
+        return $this->render('AppBundle:index:accueil.html.twig', array(
+                'form' => $form->createView(),
             ));
-        }
+
     }
+
     /**
-     * 
      * 
      * @Route ("\ticket")
      */
-    public function addTickets(Request $request)
+    public function showTickets(Request $request)
     {
-        $ticket = new Ticket();        
-        $formticket = $this->createForm(\AppBundle\Form\TicketType::class, $ticket);
-        $formticket->handleRequest($request);
-            if ($formticket->isSubmitted() && $formticket->isValid()){
+        $sale = new Sale();
+        $form1 = $this->createForm(\AppBundle\Form\SaleType::class, $sale);
+        
+//        $form->getData();
+//        $this->getSession()->set('email');
+        $form1->handleRequest($request);
+            if ($form1->isSubmitted() && $form1->isValid()){
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($ticket);
+                $em->persist($sale);
                 $em->flush();
-                return new Response('ok');
+            return $this->render('AppBundle:index:paiement.html.twig');
             }
-            else {
-                return $this->render('AppBundle:index:tickets.html.twig', array(
-                'form' => $formticket->createView(),
+        return $this->render('AppBundle:index:tickets.html.twig', array(
+                'form' => $form->createView(),
             ));
-            }
+
     }
    
 }
